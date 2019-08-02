@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true">
+    <generated />
+  </component>
+  <component name="CMakeSettings">
+    <configurations>
+      <configuration PROFILE_NAME="Debug" CONFIG_NAME="Debug" />
+    </configurations>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="ca4cc43f-0dcf-4059-be3d-9c15a9a9a405" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/index_hssg.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/index_knn_graph.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../src/index_hssg.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../src/index_knn_graph.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../cmake-build-debug/CMakeCache.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../cmake-build-debug/CMakeCache.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../cmake-build-debug/CMakeFiles/CMakeDirectoryInformation.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/../cmake-build-debug/CMakeFiles/CMakeDirectoryInformation.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../cmake-build-debug/CMakeFiles/CMakeOutput.log" beforeDir="false" afterPath="$PROJECT_DIR$/../cmake-build-debug/CMakeFiles/CMakeOutput.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../cmake-build-debug/CMakeFiles/Makefile2" beforeDir="false" afterPath="$PROJECT_DIR$/../cmake-build-debug/CMakeFiles/Makefile2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../cmake-build-debug/CMakeFiles/TargetDirectories.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../cmake-build-debug/CMakeFiles/TargetDirectories.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../cmake-build-debug/CMakeFiles/clion-log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../cmake-build-debug/CMakeFiles/clion-log.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../cmake-build-debug/CMakeFiles/progress.marks" beforeDir="false" afterPath="$PROJECT_DIR$/../cmake-build-debug/CMakeFiles/progress.marks" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../cmake-build-debug/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/../cmake-build-debug/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../cmake-build-debug/cmake_install.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/../cmake-build-debug/cmake_install.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../cmake-build-debug/src/CMakeFiles/CMakeDirectoryInformation.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/../cmake-build-debug/src/CMakeFiles/CMakeDirectoryInformation.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../cmake-build-debug/src/CMakeFiles/progress.marks" beforeDir="false" afterPath="$PROJECT_DIR$/../cmake-build-debug/src/CMakeFiles/progress.marks" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../cmake-build-debug/src/CMakeFiles/ssg.dir/CXX.includecache" beforeDir="false" afterPath="$PROJECT_DIR$/../cmake-build-debug/src/CMakeFiles/ssg.dir/CXX.includecache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../cmake-build-debug/src/CMakeFiles/ssg.dir/DependInfo.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/../cmake-build-debug/src/CMakeFiles/ssg.dir/DependInfo.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../cmake-build-debug/src/CMakeFiles/ssg.dir/build.make" beforeDir="false" afterPath="$PROJECT_DIR$/../cmake-build-debug/src/CMakeFiles/ssg.dir/build.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../cmake-build-debug/src/CMakeFiles/ssg.dir/cmake_clean.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/../cmake-build-debug/src/CMakeFiles/ssg.dir/cmake_clean.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../cmake-build-debug/src/CMakeFiles/ssg.dir/depend.internal" beforeDir="false" afterPath="$PROJECT_DIR$/../cmake-build-debug/src/CMakeFiles/ssg.dir/depend.internal" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../cmake-build-debug/src/CMakeFiles/ssg.dir/depend.make" beforeDir="false" afterPath="$PROJECT_DIR$/../cmake-build-debug/src/CMakeFiles/ssg.dir/depend.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../cmake-build-debug/src/CMakeFiles/ssg.dir/flags.make" beforeDir="false" afterPath="$PROJECT_DIR$/../cmake-build-debug/src/CMakeFiles/ssg.dir/flags.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../cmake-build-debug/src/CMakeFiles/ssg.dir/index.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/../cmake-build-debug/src/CMakeFiles/ssg.dir/index.cpp.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../cmake-build-debug/src/CMakeFiles/ssg.dir/index_random.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/../cmake-build-debug/src/CMakeFiles/ssg.dir/index_random.cpp.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../cmake-build-debug/src/CMakeFiles/ssg.dir/index_ssg.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/../cmake-build-debug/src/CMakeFiles/ssg.dir/index_ssg.cpp.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../cmake-build-debug/src/CMakeFiles/ssg.dir/link.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../cmake-build-debug/src/CMakeFiles/ssg.dir/link.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../cmake-build-debug/src/CMakeFiles/ssg.dir/progress.make" beforeDir="false" afterPath="$PROJECT_DIR$/../cmake-build-debug/src/CMakeFiles/ssg.dir/progress.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../cmake-build-debug/src/CMakeFiles/ssg.dir/util.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/../cmake-build-debug/src/CMakeFiles/ssg.dir/util.cpp.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../cmake-build-debug/src/CMakeFiles/ssg_s.dir/DependInfo.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/../cmake-build-debug/src/CMakeFiles/ssg_s.dir/DependInfo.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../cmake-build-debug/src/CMakeFiles/ssg_s.dir/build.make" beforeDir="false" afterPath="$PROJECT_DIR$/../cmake-build-debug/src/CMakeFiles/ssg_s.dir/build.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../cmake-build-debug/src/CMakeFiles/ssg_s.dir/cmake_clean.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/../cmake-build-debug/src/CMakeFiles/ssg_s.dir/cmake_clean.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../cmake-build-debug/src/CMakeFiles/ssg_s.dir/flags.make" beforeDir="false" afterPath="$PROJECT_DIR$/../cmake-build-debug/src/CMakeFiles/ssg_s.dir/flags.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../cmake-build-debug/src/CMakeFiles/ssg_s.dir/link.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../cmake-build-debug/src/CMakeFiles/ssg_s.dir/link.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../cmake-build-debug/src/CMakeFiles/ssg_s.dir/progress.make" beforeDir="false" afterPath="$PROJECT_DIR$/../cmake-build-debug/src/CMakeFiles/ssg_s.dir/progress.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../cmake-build-debug/src/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/../cmake-build-debug/src/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../cmake-build-debug/src/cmake_install.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/../cmake-build-debug/src/cmake_install.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../cmake-build-debug/src/libssg.a" beforeDir="false" afterPath="$PROJECT_DIR$/../cmake-build-debug/src/libssg.a" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../cmake-build-debug/ssg.cbp" beforeDir="false" afterPath="$PROJECT_DIR$/../cmake-build-debug/ssg.cbp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../cmake-build-debug/tests/CMakeFiles/CMakeDirectoryInformation.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/../cmake-build-debug/tests/CMakeFiles/CMakeDirectoryInformation.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../cmake-build-debug/tests/CMakeFiles/progress.marks" beforeDir="false" afterPath="$PROJECT_DIR$/../cmake-build-debug/tests/CMakeFiles/progress.marks" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../cmake-build-debug/tests/CMakeFiles/test_hssg_index.dir/CXX.includecache" beforeDir="false" afterPath="$PROJECT_DIR$/../cmake-build-debug/tests/CMakeFiles/test_hssg_index.dir/CXX.includecache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../cmake-build-debug/tests/CMakeFiles/test_hssg_index.dir/DependInfo.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/../cmake-build-debug/tests/CMakeFiles/test_hssg_index.dir/DependInfo.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../cmake-build-debug/tests/CMakeFiles/test_hssg_index.dir/build.make" beforeDir="false" afterPath="$PROJECT_DIR$/../cmake-build-debug/tests/CMakeFiles/test_hssg_index.dir/build.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../cmake-build-debug/tests/CMakeFiles/test_hssg_index.dir/depend.internal" beforeDir="false" afterPath="$PROJECT_DIR$/../cmake-build-debug/tests/CMakeFiles/test_hssg_index.dir/depend.internal" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../cmake-build-debug/tests/CMakeFiles/test_hssg_index.dir/depend.make" beforeDir="false" afterPath="$PROJECT_DIR$/../cmake-build-debug/tests/CMakeFiles/test_hssg_index.dir/depend.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../cmake-build-debug/tests/CMakeFiles/test_hssg_index.dir/flags.make" beforeDir="false" afterPath="$PROJECT_DIR$/../cmake-build-debug/tests/CMakeFiles/test_hssg_index.dir/flags.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../cmake-build-debug/tests/CMakeFiles/test_hssg_index.dir/progress.make" beforeDir="false" afterPath="$PROJECT_DIR$/../cmake-build-debug/tests/CMakeFiles/test_hssg_index.dir/progress.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../cmake-build-debug/tests/CMakeFiles/test_hssg_index.dir/test_hssg_index.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/../cmake-build-debug/tests/CMakeFiles/test_hssg_index.dir/test_hssg_index.cpp.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../cmake-build-debug/tests/CMakeFiles/test_ssg_index.dir/CXX.includecache" beforeDir="false" afterPath="$PROJECT_DIR$/../cmake-build-debug/tests/CMakeFiles/test_ssg_index.dir/CXX.includecache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../cmake-build-debug/tests/CMakeFiles/test_ssg_index.dir/DependInfo.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/../cmake-build-debug/tests/CMakeFiles/test_ssg_index.dir/DependInfo.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../cmake-build-debug/tests/CMakeFiles/test_ssg_index.dir/build.make" beforeDir="false" afterPath="$PROJECT_DIR$/../cmake-build-debug/tests/CMakeFiles/test_ssg_index.dir/build.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../cmake-build-debug/tests/CMakeFiles/test_ssg_index.dir/depend.internal" beforeDir="false" afterPath="$PROJECT_DIR$/../cmake-build-debug/tests/CMakeFiles/test_ssg_index.dir/depend.internal" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../cmake-build-debug/tests/CMakeFiles/test_ssg_index.dir/flags.make" beforeDir="false" afterPath="$PROJECT_DIR$/../cmake-build-debug/tests/CMakeFiles/test_ssg_index.dir/flags.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../cmake-build-debug/tests/CMakeFiles/test_ssg_index.dir/progress.make" beforeDir="false" afterPath="$PROJECT_DIR$/../cmake-build-debug/tests/CMakeFiles/test_ssg_index.dir/progress.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../cmake-build-debug/tests/CMakeFiles/test_ssg_index.dir/test_ssg_index.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/../cmake-build-debug/tests/CMakeFiles/test_ssg_index.dir/test_ssg_index.cpp.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../cmake-build-debug/tests/CMakeFiles/test_ssg_optimized_search.dir/DependInfo.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/../cmake-build-debug/tests/CMakeFiles/test_ssg_optimized_search.dir/DependInfo.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../cmake-build-debug/tests/CMakeFiles/test_ssg_optimized_search.dir/build.make" beforeDir="false" afterPath="$PROJECT_DIR$/../cmake-build-debug/tests/CMakeFiles/test_ssg_optimized_search.dir/build.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../cmake-build-debug/tests/CMakeFiles/test_ssg_optimized_search.dir/depend.make" beforeDir="false" afterPath="$PROJECT_DIR$/../cmake-build-debug/tests/CMakeFiles/test_ssg_optimized_search.dir/depend.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../cmake-build-debug/tests/CMakeFiles/test_ssg_optimized_search.dir/flags.make" beforeDir="false" afterPath="$PROJECT_DIR$/../cmake-build-debug/tests/CMakeFiles/test_ssg_optimized_search.dir/flags.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../cmake-build-debug/tests/CMakeFiles/test_ssg_optimized_search.dir/progress.make" beforeDir="false" afterPath="$PROJECT_DIR$/../cmake-build-debug/tests/CMakeFiles/test_ssg_optimized_search.dir/progress.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../cmake-build-debug/tests/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/../cmake-build-debug/tests/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../cmake-build-debug/tests/cmake_install.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/../cmake-build-debug/tests/cmake_install.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../cmake-build-debug/tests/test_hssg_index" beforeDir="false" afterPath="$PROJECT_DIR$/../cmake-build-debug/tests/test_hssg_index" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../cmake-build-debug/tests/test_ssg_index" beforeDir="false" afterPath="$PROJECT_DIR$/../cmake-build-debug/tests/test_ssg_index" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../tests/test_hssg_index.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../tests/test_hssg_index.cpp" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ClangdSettings">
+    <option name="formatViaClangd" value="false" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectId" id="1OdEV6OoDRl3FYz4lAhOYDZT5xf" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="ca4cc43f-0dcf-4059-be3d-9c15a9a9a405" name="Default Changelist" comment="" />
+      <created>1564299093882</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1564299093882</updated>
+      <workItem from="1564299095132" duration="12000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>
