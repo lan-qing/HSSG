@@ -53,7 +53,7 @@ int main(int argc, char **argv) {
 
     std::cerr << "Output SSG Path: " << argv[11] << std::endl;
 
-    std::vector<unsigned> num_layer = efanna2e::hier_load_data(filename, points_num, dim, n_layer, data_load, up_link,
+    std::vector<unsigned> num_layer = efanna2e::hier_load_data(argv[1], points_num, dim, n_layer, data_load, up_link,
                                                                down_link);
     //data_load = efanna2e::data_align(data_load, points_num, dim);
 
