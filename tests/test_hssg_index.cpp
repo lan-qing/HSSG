@@ -10,13 +10,13 @@ char filename[] = "/home/tianfeng/projects/SSG/datasets/siftsmall/siftsmall_base
 char save_filename[] = "/home/tianfeng/projects/SSG/graphs/siftsmall.hssg";
 
 int main(int argc, char **argv) {
-    if (argc < 12) {
+    if (argc <= 12) {
         std::cout
                 << "./run data_file L R Angle n_layer K_knn L_knn iter_knn S_knn R_knn save_graph_file [seed]"
                 << std::endl;
         exit(-1);
     }
-    if (argc == 12)
+    if (argc > 12)
     {
         unsigned seed = (unsigned)atoi(argv[12]);
         srand(seed);
