@@ -568,9 +568,13 @@ namespace efanna2e {
                     tmp_results.push_back(down_link[i + 1][j]);
                 }
                 is_first_search_layer = false;
+            } else {
+                for (size_t k = 0; k < K; ++k)
+                {
+                    tmp_results[k] = down_link[i + 1][tmp_results[k]];
+                }
             }
-            std::vector<unsigned> tmp;
-            tmp.resize(K);
+            std::vector<unsigned> tmp(K);
             SearchWithOptGraphPerLayer(query, K, parameters, tmp.data(), tmp_results, num_layer, i);
             tmp.swap(tmp_results);
         }
