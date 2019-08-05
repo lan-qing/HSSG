@@ -26,6 +26,11 @@ int main(int argc, char **argv) {
                   << std::endl;
         exit(-1);
     }
+    if (argc == 9) {
+        unsigned seed = (unsigned)atoi(argv[7]);
+        srand(seed);
+        std::cerr << "Using Seed " << seed << std::endl;
+    }
 
     unsigned L = (unsigned) atoi(argv[4]);
     unsigned K = (unsigned) atoi(argv[5]);
