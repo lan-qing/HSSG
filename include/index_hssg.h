@@ -72,7 +72,7 @@ namespace efanna2e {
                         SimpleNeighbor *cut_graph_, unsigned layer, unsigned num, float *h_data);
 
         void
-        Link(const Parameters &parameters, SimpleNeighbor *cut_graph_, unsigned layer, unsigned num, float *h_data);
+        Link(const Parameters &parameters, SimpleNeighbor *cut_graph_, const unsigned &layer, unsigned num, float *h_data);
 
         void InterInsert(unsigned n, unsigned range, float threshold,
                          std::vector<std::mutex> &locks, SimpleNeighbor *cut_graph_, float *h_data);

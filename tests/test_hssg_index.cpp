@@ -16,9 +16,8 @@ int main(int argc, char **argv) {
                 << std::endl;
         exit(-1);
     }
-    if (argc == 13)
-    {
-        unsigned seed = (unsigned)atoi(argv[12]);
+    if (argc == 13) {
+        unsigned seed = (unsigned) atoi(argv[12]);
         srand(seed);
         std::cout << "Using Seed " << seed << std::endl;
     }
@@ -52,15 +51,6 @@ int main(int argc, char **argv) {
     std::cout << "R_knn = " << R_knn << std::endl;
 
     std::cerr << "Output SSG Path: " << argv[11] << std::endl;
-
-    std::vector<unsigned> num_layer = efanna2e::hier_load_data(argv[1], points_num, dim, n_layer, data_load, up_link,
-                                                               down_link);
-    //data_load = efanna2e::data_align(data_load, points_num, dim);
-
-    efanna2e::IndexRandom init_index(dim, points_num);
-    efanna2e::IndexHSSG index(dim, points_num, n_layer, efanna2e::L2,
-                              (efanna2e::Index *) (&init_index));
-
     efanna2e::Parameters paras;
     paras.Set<unsigned>("L", L);
     paras.Set<unsigned>("R", R);
@@ -72,6 +62,13 @@ int main(int argc, char **argv) {
     paras.Set<unsigned>("iter_knn", iter_knn);
     paras.Set<unsigned>("S_knn", S_knn);
     paras.Set<unsigned>("R_knn", R_knn);
+    std::vector<unsigned> num_layer = efanna2e::hier_load_data(argv[1], points_num, dim, n_layer, data_load, up_link,
+                                                               down_link, K_knn, L);
+    //data_load = efanna2e::data_align(data_load, points_num, dim);
+
+    efanna2e::IndexRandom init_index(dim, points_num);
+    efanna2e::IndexHSSG index(dim, points_num, n_layer, efanna2e::L2,
+                              (efanna2e::Index *) (&init_index));
 
     auto s = std::chrono::high_resolution_clock::now();
     index.Hier_build(points_num, data_load, up_link, down_link, num_layer, paras);

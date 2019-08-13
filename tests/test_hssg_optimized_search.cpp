@@ -21,6 +21,10 @@ void save_result(char *filename, std::vector<std::vector<unsigned> > &results) {
 }
 
 int main(int argc, char **argv) {
+    /*bool *a = new bool[10];
+    a[10] = true;
+    std::cout << a[10] << std::endl;
+    delete []a;*/
     if (argc < 8) {
         std::cout << "./run data_file query_file hssg_path L K n_layer result_path [seed]"
                   << std::endl;
@@ -70,7 +74,6 @@ int main(int argc, char **argv) {
 
     std::vector<std::vector<unsigned> > res(query_num);
     for (unsigned i = 0; i < query_num; i++) res[i].resize(K);
-
     // Warm up
     for (int loop = 0; loop < 3; ++loop) {
         for (unsigned i = 0; i < 10; ++i) {

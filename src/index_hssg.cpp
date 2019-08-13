@@ -241,7 +241,7 @@ namespace efanna2e {
         }
     }
 
-    void IndexHSSG::Link(const Parameters &parameters, SimpleNeighbor *cut_graph_, unsigned layer, unsigned num,
+    void IndexHSSG::Link(const Parameters &parameters, SimpleNeighbor *cut_graph_, const unsigned &layer, unsigned num,
                          float *h_data) {
         unsigned range = parameters.Get<unsigned>("R");
         std::vector<std::mutex> locks(num);
@@ -318,18 +318,20 @@ namespace efanna2e {
             in.read((char *) &num_layer_tmp, sizeof(unsigned));
             num_layer[j] = num_layer_tmp;
             down_link[j] = new unsigned[num_layer[j]];
-            // final_graph_[j].resize(num_layer_tmp);
+            final_graph_[j].resize(num_layer_tmp);
             for (unsigned i = 0; i < num_layer[j]; ++i) {
                 in.read((char *) &down_link[j][i], sizeof(unsigned));
             }
 
-            for (unsigned i = 0; i < num_layer[j]; ++i) {
+            for (unsigned i = 0; i < num_layer_tmp && num_layer[j] > 1; ++i) {
+                if (j == 2 && i == 99)
+                    std::cout << 2 << std::endl;
                 unsigned k;
                 in.read((char *) &k, sizeof(unsigned));
-                if (in.eof()) break;
-                std::vector<unsigned> tmp(k);
-                in.read((char *) tmp.data(), k * sizeof(unsigned));
-                final_graph_[j].push_back(tmp);
+                final_graph_[j][i].resize(k);
+                in.read((char *) final_graph_[j][i].data(), k * sizeof(unsigned));
+                if (in.eof())
+                    break;
             }
         }
     }
@@ -349,7 +351,7 @@ namespace efanna2e {
             if (num_layer[i] <= K_knn) {
                 final_graph_[i].resize(num_layer[i]);
                 for (unsigned j = 0; j < num_layer[i]; ++j) {
-                    final_graph_[i][j].resize(num_layer[i] - 1);
+                    // final_graph_[i][j].resize(0);
                     for (unsigned k = 0; k < num_layer[i]; ++k) {
                         if (k == j) continue;
                         final_graph_[i][j].push_back(k);
@@ -400,6 +402,10 @@ namespace efanna2e {
             std::queue<unsigned> myqueue;
             for (unsigned i = 0; i < num_layer[k + 1]; ++i) {
                 myqueue.push(down_link[k + 1][i]);
+                if(down_link[k+1][i] == 2091 && k == 2)
+                {
+                    std::cout << 1 << std::endl;
+                }
                 flags[down_link[k + 1][i]] = true;
             }
             std::vector<unsigned> uncheck_set(1);
@@ -413,6 +419,10 @@ namespace efanna2e {
                         if (flags[child])continue;
                         flags[child] = true;
                         myqueue.push(child);
+                        if(child == 2091 && k == 2)
+                        {
+                            std::cout << 1 << std::endl;
+                        }
                     }
                 }
 
@@ -446,10 +456,10 @@ namespace efanna2e {
             neighbor_len = (width + 1) * sizeof(unsigned);
             node_size = data_len + neighbor_len;
             hier_opt_graph_[j] = (char *) malloc(node_size * num_layer[j]);
-            for (unsigned i = 0; i < num_layer[j] - 1; i++) {
+            for (unsigned i = 0; i < num_layer[j] ; i++) {
                 char *cur_node_offset = hier_opt_graph_[j] + i * node_size;
                 unsigned cur_data = i;
-                for (int l = j - 1; l >= 0; --l) {
+                for (int l = j; l > 0; --l) {
                     cur_data = down_link[l][cur_data];
                 }
                 const float *debug = data_ + cur_data * dimension_;
@@ -460,15 +470,16 @@ namespace efanna2e {
                             data_len - sizeof(float));
 
                 cur_node_offset += data_len;
-                unsigned k = final_graph_[j][i].size();
-                std::memcpy(cur_node_offset, &k, sizeof(unsigned));
-                std::memcpy(cur_node_offset + sizeof(unsigned), final_graph_[j][i].data(),
-                            k * sizeof(unsigned));
-                std::vector<unsigned>().swap(final_graph_[j][i]);
+                if (!final_graph_[j].empty()) {
+                    unsigned k = final_graph_[j][i].size();
+                    std::memcpy(cur_node_offset, &k, sizeof(unsigned));
+                    std::memcpy(cur_node_offset + sizeof(unsigned), final_graph_[j][i].data(),
+                                k * sizeof(unsigned));
+                }
             }
-            CompactGraph().swap(final_graph_[j]);
             data_ = nullptr;
         }
+        delete []final_graph_;
         free(data);
     }
 
@@ -488,7 +499,7 @@ namespace efanna2e {
         std::vector<unsigned> init_ids(L);
         std::mt19937 rng(rand());
         GenRandom(rng, init_ids.data(), L, (unsigned) num_layer[layer]);
-        assert(starts.size() < L);
+        assert(starts.size() <= L);
         for (unsigned i = 0; i < starts.size(); i++) {
             init_ids[i] = starts[i];
         }
@@ -561,11 +572,11 @@ namespace efanna2e {
         bool is_first_search_layer = true;
         std::vector<unsigned> tmp_results;
         for (int i = n_layer - 2; i >= 0; --i) {
-            if (num_layer[i] < K) continue;
+            if (num_layer[i] <= K || num_layer[i] <= parameters.Get<unsigned>("L_search")) continue;
             if (is_first_search_layer) {
                 tmp_results.resize(num_layer[i + 1]);
                 for (unsigned j = 0; j < num_layer[i + 1]; ++j) {
-                    tmp_results.push_back(down_link[i + 1][j]);
+                    tmp_results[j] = down_link[i + 1][j];
                 }
                 is_first_search_layer = false;
             } else {

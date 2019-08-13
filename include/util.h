@@ -12,7 +12,7 @@ namespace efanna2e {
     float *data_align(float *data_ori, unsigned point_num, unsigned &dim);
 
     std::vector<unsigned> hier_load_data(char *filename, unsigned &num, unsigned &dim, unsigned &layer_number, float **&data_load,
-                           unsigned **&up_link, unsigned **&down_link);
+                           unsigned **&up_link, unsigned **&down_link, unsigned K_knn, unsigned L);
 }
 // namespace efanna2e
 

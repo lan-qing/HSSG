@@ -53,7 +53,7 @@ float* load_data(char* filename, unsigned& num, unsigned& dim) {
 }
 
     std::vector<unsigned> hier_load_data(char *filename, unsigned &num, unsigned &dim, unsigned &layer_number, float **&data,
-                           unsigned **&up_link, unsigned **&down_link) {
+                           unsigned **&up_link, unsigned **&down_link, unsigned K_knn, unsigned L) {
 
         ///////////////////////////////////////////////
         std::ifstream in(filename, std::ios::binary);
@@ -78,9 +78,10 @@ float* load_data(char* filename, unsigned& num, unsigned& dim) {
         }
         std::random_shuffle(shuffle_list.begin(), shuffle_list.end());
         num_layer[layer_number - 1] = 1;
-        double quo = pow((float_t) num, 1 / (float_t) (layer_number - 1));
-        for (unsigned i = layer_number - 2; i > 0; --i) {
-            num_layer[i] = (unsigned) lround(num_layer[i + 1] * quo);
+        num_layer[layer_number - 2] = K_knn > L ? K_knn : L + 1;
+        double quo = pow((double_t) num / (double_t) K_knn, 1 / (double_t) (layer_number - 2));
+        for (unsigned i = layer_number - 3; i > 0; --i) {
+            num_layer[i] = (unsigned) lround(K_knn * pow(quo, layer_number - 2 - i));
         }
         num_layer[0] = num;
         for (unsigned i = 0; i < layer_number; ++i) {
@@ -91,11 +92,11 @@ float* load_data(char* filename, unsigned& num, unsigned& dim) {
         ////////////////////////////////////////////////
         //float* data = new float[(size_t)num * (size_t)dim];
         data = new float *[layer_number];
-        up_link = new unsigned *[layer_number];
+        //up_link = new unsigned *[layer_number];
         down_link = new unsigned *[layer_number];
         for (unsigned i = 0; i < layer_number; ++i) {
             data[i] = new float[num_layer[i] * dim];
-            up_link[i] = new unsigned[num_layer[i]];
+            //up_link[i] = new unsigned[num_layer[i]];
             down_link[i] = new unsigned[num_layer[i]];
         }
 
@@ -115,7 +116,9 @@ float* load_data(char* filename, unsigned& num, unsigned& dim) {
             for (unsigned j = 1; j <= layer[i]; ++j) {
                 memcpy(data[j] + curs[j] * dim, data[0] + i * dim, dim * sizeof(float));
                 down_link[j][curs[j]] = curs[j - 1];
-                up_link[j - 1][curs[j - 1]] = curs[j];
+                //up_link[j - 1][curs[j - 1]] = curs[j];
+            }
+            for (unsigned j = 1; j <= layer[i]; ++j) {
                 ++curs[j];
             }
         }
