@@ -45,7 +45,7 @@ namespace efanna2e {
                                 const Parameters &parameters, unsigned *indices,
                                 const std::vector<unsigned> &num_layer, unsigned ** down_link);
 
-        void OptimizeGraph(float *data, const std::vector<unsigned> &num_layer, unsigned **down_link);
+        void OptimizeGraph(float *data, const std::vector<unsigned> &num_layer, unsigned **down_link, const Parameters &parameter);
 
         void Hier_build(size_t n, float **data, unsigned **up_link, unsigned **down_link,
                         const std::vector<unsigned> &num_layer, const efanna2e::Parameters &parameters);

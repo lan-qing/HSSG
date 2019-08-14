@@ -447,7 +447,7 @@ namespace efanna2e {
     }
 
     void IndexHSSG::OptimizeGraph(float *data, const std::vector<unsigned> &num_layer,
-                                  unsigned **down_link) {  // use after build or load
+                                  unsigned **down_link, const Parameters &parameter) {  // use after build or load
         hier_opt_graph_ = new char *[n_layer];
         DistanceFastL2 *dist_fast = (DistanceFastL2 *) distance_;
         for (unsigned j = 0; j < n_layer; ++j) {
