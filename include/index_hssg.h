@@ -43,7 +43,7 @@ namespace efanna2e {
 
         void SearchWithOptGraph(const float *query, size_t K,
                                 const Parameters &parameters, unsigned *indices,
-                                const std::vector<unsigned> &num_layer, unsigned ** down_link);
+                                const std::vector<unsigned> &num_layer, unsigned ** down_link, std::chrono::duration<double> &count);
 
         void OptimizeGraph(float *data, const std::vector<unsigned> &num_layer, unsigned **down_link, const Parameters &parameter);
 

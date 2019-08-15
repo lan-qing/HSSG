@@ -59,23 +59,26 @@ int main(int argc, char **argv) {
     efanna2e::IndexHSSG index(dim, points_num, n_layer, efanna2e::FAST_L2,
                               (efanna2e::Index *) (&init_index));
 
+    // n_layer, num_layer, graph, down_link
     std::vector<unsigned> num_layer;
     auto **down_link = new unsigned *[n_layer];
     efanna2e::Parameters paras;
     paras.Set<unsigned>("L_search", L);
-    paras.Set<unsigned>("K_knn", K);
+    paras.Set<unsigned>("K", K);
     index.Hier_load(argv[3], num_layer, down_link);
     index.OptimizeGraph(data_load, num_layer, down_link, paras);
 
     std::vector<std::vector<unsigned> > res(query_num);
     for (unsigned i = 0; i < query_num; i++) res[i].resize(K);
+    std::chrono::duration<double> count(0);
     auto s = std::chrono::high_resolution_clock::now();
     for (unsigned i = 0; i < query_num; i++) {
-        index.SearchWithOptGraph(query_load + i * dim, K, paras, res[i].data(), num_layer, down_link);
+        index.SearchWithOptGraph(query_load + i * dim, K, paras, res[i].data(), num_layer, down_link, count);
     }
     auto e = std::chrono::high_resolution_clock::now();
     std::chrono::duration<double> diff = e - s;
     std::cerr << "Search Time: " << diff.count() << std::endl;
+    std::cerr << "Count Time: " << count.count() << std::endl;
     save_result(argv[7], res);
 
     return 0;

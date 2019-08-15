@@ -344,11 +344,12 @@ namespace efanna2e {
     void IndexHSSG::Hier_build(size_t n, float **data, unsigned **up_link, unsigned **down_link,
                                const std::vector<unsigned> &num_layer, const efanna2e::Parameters &parameters) {
         std::cout << "Totally " << n_layer << " layers. \n";
-        unsigned range = parameters.Get<unsigned>("R");
         final_graph_ = new CompactGraph[n_layer];
+        auto K_knn = parameters.Get<unsigned>("K_knn");
+        auto range = parameters.Get<unsigned>("R");
+        assert (range <= K_knn);
         for (unsigned i = 0; i < n_layer - 1; ++i) {
-            unsigned K_knn = parameters.Get<unsigned>("K_knn");
-            if (num_layer[i] <= K_knn) {
+            if (num_layer[i] <= range) {
                 final_graph_[i].resize(num_layer[i]);
                 for (unsigned j = 0; j < num_layer[i]; ++j) {
                     // final_graph_[i][j].resize(0);
@@ -358,11 +359,21 @@ namespace efanna2e {
                     }
                 }
             } else {
-                efanna2e::IndexRandom init_knn_index(dimension_, num_layer[i]);
-                knn_efanna2e::IndexGraph knn_index(dimension_, num_layer[i], efanna2e::L2,
-                                                   (efanna2e::Index *) (&init_knn_index));
-                knn_index.Build(num_layer[i], data[i], parameters);
-                final_graph_[i] = knn_index.ReturnFinalGraph();
+                if (num_layer[i] <= K_knn) {
+                    final_graph_[i].resize(num_layer[i]);
+                    for (unsigned j = 0; j < num_layer[i]; ++j) {
+                        for (unsigned k = 0; k < num_layer[i]; ++k) {
+                            if (k == j) continue;
+                            final_graph_[i][j].push_back(k);
+                        }
+                    }
+                } else {
+                    efanna2e::IndexRandom init_knn_index(dimension_, num_layer[i]);
+                    knn_efanna2e::IndexGraph knn_index(dimension_, num_layer[i], efanna2e::L2,
+                                                       (efanna2e::Index *) (&init_knn_index));
+                    knn_index.Build(num_layer[i], data[i], parameters);
+                    final_graph_[i] = knn_index.ReturnFinalGraph();
+                }
 
 
                 init_graph(parameters, i, num_layer[i], data[i]);
@@ -385,7 +396,7 @@ namespace efanna2e {
                     }
                 }
             }
-            std::cout << "Layer " << i << " built successfully!\n";
+            std::cout << num_layer[i] << " nodes, Layer " << i << " built successfully!\n";
         }
         std::cout << "Start DFS...\n";
         DFS_expand(parameters, num_layer, down_link);
@@ -402,10 +413,6 @@ namespace efanna2e {
             std::queue<unsigned> myqueue;
             for (unsigned i = 0; i < num_layer[k + 1]; ++i) {
                 myqueue.push(down_link[k + 1][i]);
-                if(down_link[k+1][i] == 2091 && k == 2)
-                {
-                    std::cout << 1 << std::endl;
-                }
                 flags[down_link[k + 1][i]] = true;
             }
             std::vector<unsigned> uncheck_set(1);
@@ -419,10 +426,6 @@ namespace efanna2e {
                         if (flags[child])continue;
                         flags[child] = true;
                         myqueue.push(child);
-                        if(child == 2091 && k == 2)
-                        {
-                            std::cout << 1 << std::endl;
-                        }
                     }
                 }
 
@@ -456,8 +459,8 @@ namespace efanna2e {
             neighbor_len = (width + 1) * sizeof(unsigned);
             node_size = data_len + neighbor_len;
             hier_opt_graph_[j] = (char *) malloc(node_size * num_layer[j]);
-            for (unsigned i = 0; i < num_layer[j] ; i++) {
-                if (num_layer[i] <= parameter.Get<unsigned>("K_knn") ||
+            for (unsigned i = 0; i < num_layer[j]; i++) {
+                if (num_layer[i] <= parameter.Get<unsigned>("K") ||
                     num_layer[i] <= parameter.Get<unsigned>("L_search"))
                     continue;
                 char *cur_node_offset = hier_opt_graph_[j] + i * node_size;
@@ -482,7 +485,7 @@ namespace efanna2e {
             }
             data_ = nullptr;
         }
-        delete []final_graph_;
+        delete[]final_graph_;
         free(data);
     }
 
@@ -571,11 +574,14 @@ namespace efanna2e {
 
     void IndexHSSG::SearchWithOptGraph(const float *query, size_t K,
                                        const Parameters &parameters, unsigned *indices,
-                                       const std::vector<unsigned> &num_layer, unsigned **down_link) {
+                                       const std::vector<unsigned> &num_layer, unsigned **down_link,
+                                       std::chrono::duration<double> &count) {
         bool is_first_search_layer = true;
         std::vector<unsigned> tmp_results;
         for (int i = n_layer - 2; i >= 0; --i) {
-            if (num_layer[i] <= K || num_layer[i] <= parameters.Get<unsigned>("L_search")) continue;
+            if (num_layer[i] <= K || num_layer[i] <= parameters.Get<unsigned>("L_search"))
+                continue;
+            auto s = std::chrono::high_resolution_clock::now();
             if (is_first_search_layer) {
                 tmp_results.resize(num_layer[i + 1]);
                 for (unsigned j = 0; j < num_layer[i + 1]; ++j) {
@@ -589,6 +595,11 @@ namespace efanna2e {
             }
             std::vector<unsigned> tmp(K);
             SearchWithOptGraphPerLayer(query, K, parameters, tmp.data(), tmp_results, num_layer, i);
+            auto e = std::chrono::high_resolution_clock::now();
+            std::chrono::duration<double> diff = e - s;
+            //std::cerr << "Search Time for Layer " << i << " : " << diff.count() << std::endl;
+            if(i == 0)
+                count += diff;
             tmp.swap(tmp_results);
         }
         for (size_t i = 0; i < K; i++) {
