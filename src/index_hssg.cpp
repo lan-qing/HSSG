@@ -460,9 +460,6 @@ namespace efanna2e {
             node_size = data_len + neighbor_len;
             hier_opt_graph_[j] = (char *) malloc(node_size * num_layer[j]);
             for (unsigned i = 0; i < num_layer[j]; i++) {
-                if (num_layer[i] <= parameter.Get<unsigned>("K") ||
-                    num_layer[i] <= parameter.Get<unsigned>("L_search"))
-                    continue;
                 char *cur_node_offset = hier_opt_graph_[j] + i * node_size;
                 unsigned cur_data = i;
                 for (int l = j; l > 0; --l) {
