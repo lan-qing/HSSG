@@ -22,7 +22,7 @@ void save_result(char *filename, std::vector<std::vector<unsigned> > &results) {
 
 int main(int argc, char **argv) {
     if (argc < 8) {
-        std::cout << "./run data_file query_file hssg_path L K n_layer result_path [seed]"
+        std::cout << "./run data_file query_file hssg_path L K L_pre n_layer result_path [seed]"
                   << std::endl;
         exit(-1);
     }
@@ -34,12 +34,14 @@ int main(int argc, char **argv) {
 
     unsigned L = (unsigned) atoi(argv[4]);
     unsigned K = (unsigned) atoi(argv[5]);
-    unsigned n_layer = (unsigned) atoi(argv[6]);
+    unsigned L_pre = (unsigned) atoi(argv[6]);
+    unsigned n_layer = (unsigned) atoi(argv[7]);
 
     std::cerr << "HSSG Path: " << argv[3] << std::endl;
-    std::cerr << "Result Path: " << argv[7] << std::endl;
+    std::cerr << "Result Path: " << argv[8] << std::endl;
     std::cout << "L = " << L << ", ";
     std::cout << "K = " << K << ", ";
+    std::cout << "L_pre = " << L_pre << ", ";
     std::cout << "n_layer = " << n_layer << "\n";
 
     unsigned points_num, dim;
@@ -65,6 +67,7 @@ int main(int argc, char **argv) {
     efanna2e::Parameters paras;
     paras.Set<unsigned>("L_search", L);
     paras.Set<unsigned>("K", K);
+    paras.Set<unsigned>("L_pre", L_pre);
     index.Hier_load(argv[3], num_layer, down_link);
     index.OptimizeGraph(data_load, num_layer, down_link, paras);
 
@@ -79,7 +82,7 @@ int main(int argc, char **argv) {
     std::chrono::duration<double> diff = e - s;
     std::cerr << "Search Time: " << diff.count() << std::endl;
     std::cerr << "Count Time: " << count.count() << std::endl;
-    save_result(argv[7], res);
+    save_result(argv[8], res);
 
     return 0;
 }

@@ -348,7 +348,7 @@ namespace efanna2e {
         auto K_knn = parameters.Get<unsigned>("K_knn");
         auto range = parameters.Get<unsigned>("R");
         assert (range <= K_knn);
-        for (unsigned i = 0; i < n_layer - 1; ++i) {
+        for (int i = n_layer - 2; i >= 0; --i) {
             if (num_layer[i] <= range) {
                 final_graph_[i].resize(num_layer[i]);
                 for (unsigned j = 0; j < num_layer[i]; ++j) {
@@ -495,7 +495,14 @@ namespace efanna2e {
                                                const Parameters &parameters,
                                                unsigned *indices, std::vector<unsigned> starts,
                                                const std::vector<unsigned> &num_layer, unsigned layer) {
-        unsigned L = parameters.Get<unsigned>("L_search");
+        unsigned L = 0;
+        if (layer == 0)
+        {
+            L = parameters.Get<unsigned>("L_search");
+        } else
+        {
+            L = parameters.Get<unsigned>("L_pre");
+        }
         DistanceFastL2 *dist_fast = (DistanceFastL2 *) distance_;
 
         std::vector<Neighbor> retset(L + 1);
@@ -575,10 +582,10 @@ namespace efanna2e {
                                        std::chrono::duration<double> &count) {
         bool is_first_search_layer = true;
         std::vector<unsigned> tmp_results;
-        for (int i = n_layer - 2; i >= 0; --i) {
-            if (num_layer[i] <= K || num_layer[i] <= parameters.Get<unsigned>("L_search"))
+        unsigned L_pre = parameters.Get<unsigned>("L_pre");
+        for (int i = n_layer - 2; i > 0; --i) {
+            if (num_layer[i] <= L_pre)
                 continue;
-            auto s = std::chrono::high_resolution_clock::now();
             if (is_first_search_layer) {
                 tmp_results.resize(num_layer[i + 1]);
                 for (unsigned j = 0; j < num_layer[i + 1]; ++j) {
@@ -586,21 +593,23 @@ namespace efanna2e {
                 }
                 is_first_search_layer = false;
             } else {
-                for (size_t k = 0; k < K; ++k) {
+                for (size_t k = 0; k < L_pre; ++k) {
                     tmp_results[k] = down_link[i + 1][tmp_results[k]];
                 }
             }
-            std::vector<unsigned> tmp(K);
-            SearchWithOptGraphPerLayer(query, K, parameters, tmp.data(), tmp_results, num_layer, i);
-            auto e = std::chrono::high_resolution_clock::now();
-            std::chrono::duration<double> diff = e - s;
+            std::vector<unsigned> tmp(L_pre);
+            SearchWithOptGraphPerLayer(query, L_pre, parameters, tmp.data(), tmp_results, num_layer, i);
             //std::cerr << "Search Time for Layer " << i << " : " << diff.count() << std::endl;
-            if(i == 0)
-                count += diff;
             tmp.swap(tmp_results);
         }
+        auto s = std::chrono::high_resolution_clock::now();
+        std::vector<unsigned> tmp(K);
+        SearchWithOptGraphPerLayer(query, K, parameters, tmp.data(), tmp_results, num_layer, 0);
+        auto e = std::chrono::high_resolution_clock::now();
+        std::chrono::duration<double> diff = e - s;
+        count += diff;
         for (size_t i = 0; i < K; i++) {
-            indices[i] = tmp_results[i];
+            indices[i] = tmp[i];
         }
     }
 }
