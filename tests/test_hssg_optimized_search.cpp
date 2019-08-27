@@ -21,13 +21,13 @@ void save_result(char *filename, std::vector<std::vector<unsigned> > &results) {
 }
 
 int main(int argc, char **argv) {
-    if (argc < 8) {
+    if (argc < 9) {
         std::cout << "./run data_file query_file hssg_path L K L_pre n_layer result_path [seed]"
                   << std::endl;
         exit(-1);
     }
-    if (argc == 9) {
-        unsigned seed = (unsigned)atoi(argv[7]);
+    if (argc == 10) {
+        unsigned seed = (unsigned)atoi(argv[9]);
         srand(seed);
         std::cerr << "Using Seed " << seed << std::endl;
     }
