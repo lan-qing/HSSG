@@ -123,9 +123,12 @@ float* load_data(char* filename, unsigned& num, unsigned& dim) {
             }
         }
         delete []curs;
+        unsigned dim_ori;
         for (unsigned i = 0; i < layer_number; ++i) {
-            data[i] = data_align(data[i], num_layer[i], dim);
+            dim_ori = dim;
+            data[i] = data_align(data[i], num_layer[i], dim_ori);
         }
+        dim = dim_ori;
         return num_layer;
     }
 
