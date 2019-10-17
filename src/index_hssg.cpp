@@ -579,7 +579,7 @@ namespace efanna2e {
     void IndexHSSG::SearchWithOptGraph(const float *query, size_t K,
                                        const Parameters &parameters, unsigned *indices,
                                        const std::vector<unsigned> &num_layer, unsigned **down_link,
-                                       std::chrono::duration<double> &count) {
+                                       std::chrono::duration<double> &count, unsigned one_more) {
         bool is_first_search_layer = true;
         std::vector<unsigned> tmp_results;
         unsigned L_pre = parameters.Get<unsigned>("L_pre");
@@ -599,7 +599,12 @@ namespace efanna2e {
             }
             std::vector<unsigned> tmp(L_pre);
             SearchWithOptGraphPerLayer(query, L_pre, parameters, tmp.data(), tmp_results, num_layer, i);
-            //std::cerr << "Search Time for Layer " << i << " : " << diff.count() << std::endl;
+            tmp.swap(tmp_results);
+        }
+        if (one_more == 1)
+        {
+            std::vector<unsigned> tmp(L_pre);
+            SearchWithOptGraphPerLayer(query, K, parameters, tmp.data(), tmp_results, num_layer, 0);
             tmp.swap(tmp_results);
         }
         auto s = std::chrono::high_resolution_clock::now();

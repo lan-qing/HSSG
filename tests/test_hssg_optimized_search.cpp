@@ -21,13 +21,13 @@ void save_result(char *filename, std::vector<std::vector<unsigned> > &results) {
 }
 
 int main(int argc, char **argv) {
-    if (argc < 9) {
-        std::cout << "./run data_file query_file hssg_path L K L_pre n_layer result_path [seed]"
+    if (argc < 10) {
+        std::cout << "./run data_file query_file hssg_path L K L_pre n_layer result_path one_more [seed]"
                   << std::endl;
         exit(-1);
     }
-    if (argc == 10) {
-        unsigned seed = (unsigned)atoi(argv[9]);
+    if (argc == 11) {
+        unsigned seed = (unsigned)atoi(argv[10]);
         srand(seed);
         std::cerr << "Using Seed " << seed << std::endl;
     }
@@ -36,6 +36,7 @@ int main(int argc, char **argv) {
     unsigned K = (unsigned) atoi(argv[5]);
     unsigned L_pre = (unsigned) atoi(argv[6]);
     unsigned n_layer = (unsigned) atoi(argv[7]);
+    unsigned one_more = (unsigned) atoi(argv[9]);
 
     std::cerr << "HSSG Path: " << argv[3] << std::endl;
     std::cerr << "Result Path: " << argv[8] << std::endl;
@@ -76,7 +77,7 @@ int main(int argc, char **argv) {
     std::chrono::duration<double> count(0);
     auto s = std::chrono::high_resolution_clock::now();
     for (unsigned i = 0; i < query_num; i++) {
-        index.SearchWithOptGraph(query_load + i * dim, K, paras, res[i].data(), num_layer, down_link, count);
+        index.SearchWithOptGraph(query_load + i * dim, K, paras, res[i].data(), num_layer, down_link, count, one_more);
     }
     auto e = std::chrono::high_resolution_clock::now();
     std::chrono::duration<double> diff = e - s;
