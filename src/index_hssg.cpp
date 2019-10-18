@@ -604,7 +604,7 @@ namespace efanna2e {
         if (one_more == 1)
         {
             std::vector<unsigned> tmp(L_pre);
-            SearchWithOptGraphPerLayer(query, K, parameters, tmp.data(), tmp_results, num_layer, 0);
+            SearchWithOptGraphPerLayer(query, L_pre, parameters, tmp.data(), tmp_results, num_layer, 0);
             tmp.swap(tmp_results);
         }
         auto s = std::chrono::high_resolution_clock::now();
